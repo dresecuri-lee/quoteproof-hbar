@@ -30,6 +30,30 @@ npm run next:dev
 
 Open [http://localhost:3000](http://localhost:3000). The unsigned Supra preview and local evidence generation need no wallet. `packages/nextjs/.env.example` lists optional frontend settings.
 
+## Verified Hedera Testnet deployment
+
+The deployment below was created from the unchanged `QuoteProof.sol` source in this repository and independently re-read through Hedera JSON-RPC and the official Mirror Node on 2026-09-21.
+
+- QuoteProof: [`0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED`](https://hashscan.io/testnet/contract/0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED), Hedera contract `0.0.10644252`
+- Deployment transaction: [`0xa4c69d2c78bdc7625a5ea18b4cc0366790240ffd91d6add2b1d172dda7c99c37`](https://hashscan.io/testnet/transaction/0xa4c69d2c78bdc7625a5ea18b4cc0366790240ffd91d6add2b1d172dda7c99c37)
+- Synthetic revision 1: [`0xbe73125deeadd2424a1bdeebd2676cf85923e7f24bd21d57b50c625d3cdb978d`](https://hashscan.io/testnet/transaction/0xbe73125deeadd2424a1bdeebd2676cf85923e7f24bd21d57b50c625d3cdb978d)
+- Synthetic revision 2: [`0x6fe1ff5e20602cc12b9543b64a6a437502df44d0ecf7898d3c87b64d22a4d453`](https://hashscan.io/testnet/transaction/0x6fe1ff5e20602cc12b9543b64a6a437502df44d0ecf7898d3c87b64d22a4d453)
+- Oracle: official Supra Hedera Testnet address `0x6Cd59830AAD978446e6cc7f6cc173aF7656Fb917`, pair `432`
+
+`TESTNET-DEPLOYMENT.json` contains the non-secret contract, record, fee, RPC, and Mirror Node evidence. It intentionally excludes the canonical quote payloads and salts needed to prove possession of the private evidence files.
+
+Repeat the public checks and build the verifier with the trusted address:
+
+```sh
+curl -fsS https://testnet.mirrornode.hedera.com/api/v1/contracts/0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED
+curl -fsS https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0xbe73125deeadd2424a1bdeebd2676cf85923e7f24bd21d57b50c625d3cdb978d
+curl -fsS https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0x6fe1ff5e20602cc12b9543b64a6a437502df44d0ecf7898d3c87b64d22a4d453
+NEXT_PUBLIC_QUOTEPROOF_ADDRESS=0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED npm run next:build
+NEXT_PUBLIC_QUOTEPROOF_ADDRESS=0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED npm run next:serve
+```
+
+An `HTTP 200` response alone is not proof. Check that each contract result has `result: "SUCCESS"`, `status: "0x1"`, `chain_id: "0x128"`, the requested transaction `hash`, and contract ID `0.0.10644252`. The app reports `externally_verified` only when the local evidence also matches all seven event inputs from a fresh chain 296 receipt.
+
 ## One quote flow
 
 1. Connect a Hedera Testnet wallet and enter a synthetic quote ID, positive USD amount, revision, prior revision hash, and expiry.

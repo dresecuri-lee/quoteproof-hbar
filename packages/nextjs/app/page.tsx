@@ -29,6 +29,8 @@ const statusLabel: Record<FlowStatus, string> = {
   failed: "Failed",
 };
 
+const verifyStatusLabel: Record<FlowStatus, string> = { ...statusLabel, pending: "Checking public receipt" };
+
 const formatPrice = (snapshot: OracleSnapshot) => formatUnits(snapshot.price, Number(snapshot.decimals));
 const formatHbar = (tinybar: bigint) => formatUnits(tinybar, 8);
 
@@ -470,7 +472,7 @@ const Home: NextPage = () => {
                   }`}
                 >
                   <span>
-                    {statusLabel[verifyStatus]}: {verifyMessage}
+                    {verifyStatusLabel[verifyStatus]}: {verifyMessage}
                   </span>
                 </div>
               </div>

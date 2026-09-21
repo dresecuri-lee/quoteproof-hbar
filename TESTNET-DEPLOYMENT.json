@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-21T06:55:05.687Z",
+  "chain": {
+    "id": 296,
+    "name": "Hedera Testnet",
+    "rpcUrl": "https://testnet.hashio.io/api",
+    "mirrorRoot": "https://testnet.mirrornode.hedera.com/api/v1"
+  },
+  "dedicatedTestnetSigner": "0xed5868c116Aa571356f3B6D197B9dC1E03e6a069",
+  "oracle": {
+    "address": "0x6Cd59830AAD978446e6cc7f6cc173aF7656Fb917",
+    "pairId": 432
+  },
+  "deployment": {
+    "address": "0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED",
+    "hederaContractId": "0.0.10644252",
+    "transactionHash": "0xa4c69d2c78bdc7625a5ea18b4cc0366790240ffd91d6add2b1d172dda7c99c37",
+    "recordHash": null,
+    "rpcReceiptStatus": 1,
+    "mirrorResult": "SUCCESS",
+    "mirrorEvmStatus": "0x1",
+    "mirrorConsensusTimestamp": "1789973604.742787034",
+    "chargedFeeTinybar": "117724033",
+    "hashscanUrl": "https://hashscan.io/testnet/contract/0x02Cc092A6AD11106ecc6EF24337E65dCDcFeC4ED",
+    "mirrorResultUrl": "https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0xa4c69d2c78bdc7625a5ea18b4cc0366790240ffd91d6add2b1d172dda7c99c37"
+  },
+  "revisions": [
+    {
+      "revision": 1,
+      "transactionHash": "0xbe73125deeadd2424a1bdeebd2676cf85923e7f24bd21d57b50c625d3cdb978d",
+      "recordHash": "0xaa156847ce639c999cb08be33bbbba75ada20eeb0f11c0706e9d0f0e3af0d84d",
+      "rpcReceiptStatus": 1,
+      "mirrorResult": "SUCCESS",
+      "mirrorEvmStatus": "0x1",
+      "mirrorConsensusTimestamp": "1789973613.202685104",
+      "chargedFeeTinybar": "38786124",
+      "hashscanUrl": "https://hashscan.io/testnet/transaction/0xbe73125deeadd2424a1bdeebd2676cf85923e7f24bd21d57b50c625d3cdb978d",
+      "mirrorResultUrl": "https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0xbe73125deeadd2424a1bdeebd2676cf85923e7f24bd21d57b50c625d3cdb978d"
+    },
+    {
+      "revision": 2,
+      "transactionHash": "0x6fe1ff5e20602cc12b9543b64a6a437502df44d0ecf7898d3c87b64d22a4d453",
+      "recordHash": "0xee9b0126161eb942c60154d93c3c1dbff7d47db00cac06ab96657ae158073549",
+      "previousRevisionHash": "0xaa156847ce639c999cb08be33bbbba75ada20eeb0f11c0706e9d0f0e3af0d84d",
+      "rpcReceiptStatus": 1,
+      "mirrorResult": "SUCCESS",
+      "mirrorEvmStatus": "0x1",
+      "mirrorConsensusTimestamp": "1789973620.280395104",
+      "chargedFeeTinybar": "35070423",
+      "hashscanUrl": "https://hashscan.io/testnet/transaction/0x6fe1ff5e20602cc12b9543b64a6a437502df44d0ecf7898d3c87b64d22a4d453",
+      "mirrorResultUrl": "https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0x6fe1ff5e20602cc12b9543b64a6a437502df44d0ecf7898d3c87b64d22a4d453"
+    }
+  ],
+  "balance": {
+    "beforeTinybar": "1000000000",
+    "afterTinybar": "808419420",
+    "totalChargedFeeTinybar": "191580580"
+  },
+  "verification": {
+    "rpcReceiptsMatched": true,
+    "mirrorStatusesAndIdentitiesMatched": true,
+    "canonicalEventInputsMatched": 7,
+    "revisionLinkMatched": true,
+    "externallyVerified": true
+  },
+  "source": {
+    "quoteProofSolSha256": "83368564926394e321e1731f6a6061ea126daea9034dba77219ff1032bb8fc77",
+    "frontendVerifierSha256": "2510fe7b71b9d0a1bb3cea1936b6dcccc47e7a4c05d25eef2a8b607a5f623d02"
+  },
+  "privacy": "Canonical quote payloads, salts, credentials, and local evidence paths are intentionally excluded."
+}
