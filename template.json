@@ -1,0 +1,54 @@
+{
+  "name": "quoteproof",
+  "description": "Commit synthetic quote revisions with a direct Supra HBAR/USD snapshot on Hedera Testnet, then verify the local evidence and public receipt independently.",
+  "version": "1.0.0",
+  "create-scaffold-hbar": {
+    "capabilities": {
+      "frontend": ["nextjs-app"],
+      "solidityFramework": ["hardhat"],
+      "packageManager": ["npm"]
+    },
+    "defaults": {
+      "frontend": "nextjs-app",
+      "solidityFramework": "hardhat",
+      "packageManager": "npm"
+    },
+    "requirements": {
+      "node": ">=20.18.3"
+    },
+    "envVars": [
+      {
+        "key": "NEXT_PUBLIC_HEDERA_TESTNET_RPC_URL",
+        "description": "Optional Hedera Testnet JSON-RPC URL. Defaults to public HashIO."
+      },
+      {
+        "key": "NEXT_PUBLIC_QUOTEPROOF_ADDRESS",
+        "description": "QuoteProof contract address after your Hedera Testnet deployment."
+      }
+    ],
+    "outro": {
+      "sections": [
+        {
+          "title": "Run QuoteProof",
+          "steps": [
+            {
+              "label": "Compile the contract",
+              "command": "{run:framework:compile}"
+            },
+            {
+              "label": "Run the contract tests",
+              "command": "{run:framework:test}"
+            },
+            {
+              "label": "Start the frontend",
+              "command": "{run:next:dev}"
+            },
+            {
+              "text": "The unsigned Supra preview and local evidence flow work immediately. A funded Hedera Testnet account and NEXT_PUBLIC_QUOTEPROOF_ADDRESS are required for a real anchor transaction."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "quoteproof-template",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/hardhat",
+      "packages/nextjs"
+    ]
+  },
+  "scripts": {
+    "format": "npm run next:format -- && npm run hardhat:format --",
+    "hardhat:account": "npm run account -w @sh/hardhat --",
+    "hardhat:account:generate": "npm run account:generate -w @sh/hardhat --",
+    "hardhat:account:import": "npm run account:import -w @sh/hardhat --",
+    "hardhat:account:reveal-pk": "npm run account:reveal-pk -w @sh/hardhat --",
+    "hardhat:chain": "npm run chain -w @sh/hardhat --",
+    "hardhat:check-types": "npm run check-types -w @sh/hardhat --",
+    "hardhat:clean": "npm run clean -w @sh/hardhat --",
+    "hardhat:compile": "npm run compile -w @sh/hardhat --",
+    "hardhat:deploy": "npm run deploy -w @sh/hardhat --",
+    "hardhat:flatten": "npm run flatten -w @sh/hardhat --",
+    "hardhat:fork": "npm run fork -w @sh/hardhat --",
+    "hardhat:format": "npm run format -w @sh/hardhat --",
+    "hardhat:lint": "npm run lint -w @sh/hardhat --",
+    "hardhat:lint-staged": "npm run lint-staged -w @sh/hardhat --",
+    "hardhat:test": "npm run test -w @sh/hardhat --",
+    "hardhat:verify": "npm run verify -w @sh/hardhat --",
+    "hardhat:verify:testnet": "npm run verify:testnet -w @sh/hardhat --",
+    "hardhat:verify:mainnet": "npm run verify:mainnet -w @sh/hardhat --",
+    "lint": "npm run next:lint -- && npm run hardhat:lint --",
+    "next:build": "npm run build -w @sh/nextjs --",
+    "next:check-types": "npm run check-types -w @sh/nextjs --",
+    "next:dev": "npm run dev -w @sh/nextjs --",
+    "next:format": "npm run format -w @sh/nextjs --",
+    "next:lint": "npm run lint -w @sh/nextjs --",
+    "next:test": "npm run test -w @sh/nextjs --",
+    "next:serve": "npm run serve -w @sh/nextjs --",
+    "next:start": "npm run start -w @sh/nextjs --",
+    "oracle:probe": "node scripts/probe-supra.mjs",
+    "template:validate": "node scripts/validate-template.mjs"
+  },
+  "packageManager": "npm@10.0.0",
+  "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "8.5.23"
+    },
+    "@hiero-ledger/sdk": {
+      "ws": "8.21.0"
+    },
+    "@reown/appkit": {
+      "ws": "8.21.0"
+    },
+    "@reown/appkit-controllers": {
+      "ws": "8.21.0"
+    },
+    "@reown/appkit-utils": {
+      "ws": "8.21.0"
+    },
+    "@walletconnect/utils": {
+      "ws": "8.21.0"
+    },
+    "viem": {
+      "ws": "8.21.0"
+    }
+  },
+  "engines": {
+    "node": ">=20.18.3"
+  }
+}

@@ -1,0 +1,48 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [lts/*]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup node env
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Hardhat node and deploy contracts
+        run: |
+          npm run hardhat:chain &
+          timeout 60s bash -c 'until curl -s -X POST http://127.0.0.1:8545 -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"web3_clientVersion\",\"params\":[],\"id\":1}" >/dev/null; do sleep 2; done'
+          npm run hardhat:deploy --network localhost
+
+      - name: Run nextjs lint
+        run: npm run next:lint --max-warnings=0
+
+      - name: Check typings on nextjs
+        run: npm run next:check-types
+
+      - name: Run hardhat lint
+        run: npm run hardhat:lint --max-warnings=0
