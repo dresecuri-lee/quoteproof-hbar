@@ -32,17 +32,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Hardhat node and deploy contracts
+      - name: Compile and test
         run: |
-          npm run hardhat:chain &
-          timeout 60s bash -c 'until curl -s -X POST http://127.0.0.1:8545 -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"web3_clientVersion\",\"params\":[],\"id\":1}" >/dev/null; do sleep 2; done'
-          npm run hardhat:deploy --network localhost
+          npm run hardhat:compile
+          npm run hardhat:test
+          npm run next:test
 
       - name: Run nextjs lint
-        run: npm run next:lint --max-warnings=0
+        run: npm run next:lint -- --max-warnings=0
 
       - name: Check typings on nextjs
         run: npm run next:check-types
 
       - name: Run hardhat lint
-        run: npm run hardhat:lint --max-warnings=0
+        run: npm run hardhat:lint -- --max-warnings=0

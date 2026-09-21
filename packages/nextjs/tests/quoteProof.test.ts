@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { SUPRA_HBAR_USD_ADDRESS, quoteProofAbi } from "../contracts/quoteProof";
 import {
   ZERO_HASH,
@@ -11,7 +12,9 @@ import {
   verifyPublicReceipt,
   verifyReceiptEvidence,
 } from "../utils/quoteProof";
+import { Cuer } from "cuer";
 import assert from "node:assert/strict";
+import { createRequire } from "node:module";
 import test from "node:test";
 import {
   type Address,
@@ -21,6 +24,10 @@ import {
   encodeAbiParameters,
   encodeEventTopics,
 } from "viem";
+
+const { renderToStaticMarkup } = createRequire(import.meta.url)("react-dom/server") as {
+  renderToStaticMarkup: (element: ReturnType<typeof createElement>) => string;
+};
 
 const issuer = "0x00000000000000000000000000000000000000a1" as Address;
 const otherIssuer = "0x00000000000000000000000000000000000000a2" as Address;
@@ -39,6 +46,13 @@ const payload = {
 };
 
 process.env.NEXT_PUBLIC_QUOTEPROOF_ADDRESS = contract;
+
+test("wallet QR renders through RainbowKit's Cuer boundary", () => {
+  const markup = renderToStaticMarkup(createElement(Cuer, { value: "wc:quoteproof-regression", size: 240 }));
+
+  assert.match(markup, /<svg/);
+  assert.match(markup, /QR Code/);
+});
 
 function makeReceipt(overrides: Record<string, unknown> = {}) {
   const evidence = createEvidence(payload, salt);

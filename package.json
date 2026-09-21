@@ -46,6 +46,7 @@
     "lint-staged": "^15.2.10"
   },
   "overrides": {
+    "qr": "0.5.5",
     "next": {
       "postcss": "8.5.23"
     },
